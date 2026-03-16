@@ -1,59 +1,60 @@
+# 🏠 MyListingApp - Real Estate & Job Board
 
-# 🏠 MyListingApp - የቤት ኪራይ እና ስራ መፈለጊያ
-
-[![Visit Website](https://img.shields.com/badge/Visit%20Website-🌐-blue?style=for-the-badge&logo=google-chrome&logoColor=white)](https://zerihundagne880-bot.github.io/mylistingapp/)
-
----
-
-ይህ አፕሊኬሽን በዋናነት ለቤት ኪራይ እና ለተለያዩ የስራ ማስታወቂያዎች መረጃ መለዋወጫ እንዲሆን ተደርጎ የተሰራ ዘመናዊ ዌብ አፕሊኬሽን ነው። ተጠቃሚዎች ያሉትን ቤቶች በቀላሉ እንዲያዩ፣ አድሚኑ ደግሞ አዳዲስ መረጃዎችን እንዲመዘግብ ያስችላል።
+[![Visit Website](https://img.shields.io/badge/Visit%20Website-🌐-blue?style=for-the-badge&logo=google-chrome&logoColor=white)](https://zerihundagne880-bot.github.io/mylistingapp/)
 
 ---
 
-## ✨ ዋና ዋና ተግባራት (Features)
-
-* **🔍 ዘመናዊ ፍለጋ፦** ተጠቃሚዎች በከተማ ወይም በቤት አይነት በቀላሉ መፈለግ ይችላሉ።
-* **🔒 የአድሚን መግቢያ፦** የ Firebase Authentication በመጠቀም አድሚኑ ብቻ መረጃ እንዲመዘግብ እና እንዲያጠፋ ተደርጓል።
-* **📞 ቀጥታ ግንኙነት፦** ደንበኞች በአንድ "ደውል" (Call) በተን ብቻ ለባለቤቱ መደወል ይችላሉ።
-* **📱 ሞባይል ሬስፖንሲቭ፦** በሁሉም አይነት ስልኮች እና ኮምፒውተሮች ላይ በሚያምር ሁኔታ ይሰራል።
-* **⚡ ፈጣን ዳታቤዝ፦** መረጃዎች በቅጽበት (Real-time) ከ Firebase ዳታቤዝ ጋር ይገናኛሉ።
+MyListingApp is a modern web application designed for listing house rentals and job advertisements. It provides a seamless experience for users to browse available listings, while allowing authorized admins to manage content dynamically.
 
 ---
 
-​🛠 የተጠቀምኳቸው ቴክኖሎጂዎች (Tech Stack)
-​<table>
+## ✨ Key Features
+
+* **🔍 Smart Search:** Users can easily filter listings by city or property type.
+* **🔒 Secure Admin Portal:** Integrated with **Firebase Authentication** to ensure only authorized admins can add, edit, or delete listings.
+* **📞 Direct Contact:** Customers can reach out to owners instantly using the integrated "Call" button.
+* **📱 Fully Responsive:** Optimized for a beautiful experience across all devices, including mobile phones and desktops.
+* **⚡ Real-time Database:** Powered by **Firebase Realtime Database**, ensuring data updates are reflected instantly without page reloads.
+
+---
+
+## 🛠 Tech Stack
+
+<table>
 <tr>
-<td align="center"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg" width="40" height="40"/>
-HTML5</td>
-<td align="center"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg" width="40" height="40"/>
-CSS3</td>
-<td align="center"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" width="40" height="40"/>
-JavaScript</td>
-<td align="center"><img src="https://www.vectorlogo.zone/logos/firebase/firebase-icon.svg" width="40" height="40"/>
-Firebase</td>
+<td align="center"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg" width="40" height="40"/><br/>HTML5</td>
+<td align="center"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg" width="40" height="40"/><br/>CSS3</td>
+<td align="center"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" width="40" height="40"/><br/>JavaScript</td>
+<td align="center"><img src="https://www.vectorlogo.zone/logos/firebase/firebase-icon.svg" width="40" height="40"/><br/>Firebase</td>
 </tr>
 </table>
----
-
-## 🚀 አጠቃቀም (How to Use)
-
-1.  **ለደንበኞች፦** ዌብሳይቱን እንደከፈቱ ያሉትን ቤቶች ማየት እና መፈለግ ይችላሉ።
-2.  **ለአድሚን፦** "Admin Login" የሚለውን በመጫን በኢሜይል እና በፓስወርድ መግባት።
-3.  **መረጃ ለመመዝገብ፦** አድሚኑ ከገባ በኋላ የቤቱን ፎቶ ሊንክ፣ ዋጋ፣ እና ቦታ በመሙላት መመዝገብ ይችላል።
 
 ---
 
-## 📸 ስክሪንሾት (Screenshot)
-### 📸 የፕሮጀክቱ ገጽታ (Screenshots)
+## 🚀 How to Use
 
-![የመጀመሪያ ገጽ](Screenshot_20260316_154420_Spck%20Editor.jpg)
-![የዝርዝር ገጽ](Screenshot_20260316_154434_Spck%20Editor.jpg)
-![የአድሚን ገጽ](Screenshot_20260316_154524_Spck%20Editor.jpg)
-
-![App Preview](https://github.com/zerihundagne880-bot/mylistingapp/blob/main/screenshot.jpg?raw=true)
+1.  **For Users:** Simply open the website to browse and search for available houses or job listings.
+2.  **For Admins:** Click on "Admin Login" and enter your email and password.
+3.  **Managing Content:** Once logged in, the admin can upload property images (via links), set prices, and update location details.
 
 ---
 
-## 👨‍💻 ደራሲ (Author)
+## 📸 Screenshots
 
-**ዘሪሁን ዳኜ**
+### 🖥 Application Preview
+
+![Home Page](Screenshot_20260316_154420_Spck%20Editor.jpg)
+![Listing Details](Screenshot_20260316_154434_Spck%20Editor.jpg)
+![Admin Dashboard](Screenshot_20260316_154524_Spck%20Editor.jpg)
+
+---
+
+## 👨‍💻 Author
+
+**Zerihun Dagne**
 * GitHub: [@zerihundagne880-bot](https://github.com/zerihundagne880-bot)
+* Portfolio: [Visit Website](https://zerihundagne880-bot.github.io/mylistingapp/)
+
+---
+⭐️ *Feel free to star the repo if you find this project useful!*
+
