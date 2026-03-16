@@ -32,6 +32,11 @@
 ---
 
 ## 📸 ስክሪንሾት (Screenshot)
+### 📸 የፕሮጀክቱ ገጽታ (Screenshots)
+
+![የመጀመሪያ ገጽ](Screenshot_20260316_154420_Spck%20Editor.jpg)
+![የዝርዝር ገጽ](Screenshot_20260316_154434_Spck%20Editor.jpg)
+![የአድሚን ገጽ](Screenshot_20260316_154524_Spck%20Editor.jpg)
 
 ![App Preview](https://github.com/zerihundagne880-bot/mylistingapp/blob/main/screenshot.jpg?raw=true)
 
