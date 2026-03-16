@@ -14,13 +14,19 @@
 
 ---
 
-## 🛠 የተጠቀምኳቸው ቴክኖሎጂዎች (Tech Stack)
-
-* **Frontend:** HTML5, CSS3, JavaScript (Vanilla JS)
-* **Backend/Database:** Firebase Realtime Database
-* **Authentication:** Firebase Auth (Email/Password)
-* **Hosting:** GitHub Pages
-
+​🛠 የተጠቀምኳቸው ቴክኖሎጂዎች (Tech Stack)
+​<table>
+<tr>
+<td align="center"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg" width="40" height="40"/>
+HTML5</td>
+<td align="center"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg" width="40" height="40"/>
+CSS3</td>
+<td align="center"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" width="40" height="40"/>
+JavaScript</td>
+<td align="center"><img src="https://www.vectorlogo.zone/logos/firebase/firebase-icon.svg" width="40" height="40"/>
+Firebase</td>
+</tr>
+</table>
 ---
 
 ## 🚀 አጠቃቀም (How to Use)
