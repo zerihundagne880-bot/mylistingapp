@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="am">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>የቤት ኪራይ መፈለጊያ</title>
+    <link rel="stylesheet" href="style.css">
+    
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+</head>
+<body>
+
+<header style="background-color: #2c3e50; padding: 15px 20px; color: white; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <h1 style="margin: 0; font-size: 20px; display: flex; align-items: center; gap: 10px;">
+            🏠 <span style="font-size: 18px;">የቤት ኪራይ እና ስራ</span>
+        </h1>
+        
+        <button id="loginBtn" onclick="handleAuth()" style="background-color: #e67e22; color: white; border: none; padding: 8px 16px; border-radius: 6px; font-weight: bold; cursor: pointer; white-space: nowrap; box-shadow: 0 2px 4px rgba(0,0,0,0.2);">
+            Admin Login
+        </button>
+    </div>
+
+    <div class="search-container" style="display: flex; gap: 8px; justify-content: center;">
+        <input type="text" id="searchInput" placeholder="ከተማ ወይም የቤት አይነት ይፈልጉ..." style="padding: 12px; border-radius: 6px; border: none; width: 75%; font-size: 15px; outline: none;">
+        <button onclick="searchFunction()" style="padding: 12px 18px; background-color: #27ae60; color: white; border: none; border-radius: 6px; cursor: pointer; font-weight: bold;">
+            ፈልግ
+        </button>
+    </div>
+</header>
+
+
+    <section class="admin-section" style="display:none; background:#f9f9f9; padding:20px; border-radius:10px; margin:20px;">
+        <h3 style="text-align:center;">አዲስ ቤት ይጨምሩ</h3>
+        <input type="text" id="homeTitle" placeholder="የቤቱ ስም" style="display:block; width:100%; margin:10px 0; padding:10px;">
+        <input type="text" id="homeLocation" placeholder="አድራሻ (ለምሳሌ ቦሌ)" style="display:block; width:100%; margin:10px 0; padding:10px;">
+        <input type="text" id="homePrice" placeholder="ዋጋ (ለምሳሌ 20,000 ETB)" style="display:block; width:100%; margin:10px 0; padding:10px;">
+        <input type="tel" id="homePhone" placeholder="የስልክ ቁጥር (ለምሳሌ 09...)" style="display:block; width:100%; margin:10px 0; padding:10px;">
+        
+        <input type="text" id="homeImageURL" placeholder="የምስል ሊንክ (URL) - ካለዎት" style="display:block; width:100%; margin:10px 0; padding:10px;">
+        
+        <p style="text-align:center; margin:5px; font-size:12px; color:#888;">ወይም ፎቶ ይምረጡ</p>
+        
+        <input type="file" id="imageFile" accept="image/*" style="display:block; width:100%; margin:10px 0;">
+        
+        <button onclick="uploadAndSave()" style="width:100%; padding:12px; background:#27ae60; color:white; border:none; border-radius:5px; cursor:pointer; font-weight:bold;">መዝግብ</button>
+    </section>
+
+    <main id="listingsContainer">
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
