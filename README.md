@@ -49,7 +49,7 @@ MyListingApp is a modern web application designed for listing house rentals and 
 
 ---
 
-## 👨‍💻 Author
+## 👨‍💻 developed by
 
 **Zerihun Dagne**
 * GitHub: [@zerihundagne880-bot](https://github.com/zerihundagne880-bot)
