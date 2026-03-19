@@ -2,28 +2,63 @@
 // const firebaseConfig = { ... };
 // firebase.initializeApp(firebaseConfig);
 
+const firebaseConfig = {
+  apiKey: "AIzaSyDi6iX2bwnOZsc9ycjJrnpEePdgOMoIWcI",
+  authDomain: "mylistingapp-86690.firebaseapp.com",
+  databaseURL: "https://mylistingapp-86690-default-rtdb.firebaseio.com",
+  projectId: "mylistingapp-86690",
+  storageBucket: "mylistingapp-86690.firebasestorage.app",
+  messagingSenderId: "936086596730",
+  appId: "1:936086596730:web:a8ed267cae353c58b0dfc3",
+  measurementId: "G-KBKNK3BQ3F"
+};
+
+// Initialize Firebase (Compat version)
+if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+}
+
 const database = firebase.database();
 const auth = firebase.auth();
 
-// 2. Function to handle Admin Login
+// 2. Auth Observer (የአድሚን ሁኔታ መከታተያ)
+auth.onAuthStateChanged((user) => {
+    const adminSection = document.querySelector('.admin-section');
+    const loginBtn = document.getElementById('loginBtn');
+
+    if (user) {
+        adminSection.style.display = 'block';
+        loginBtn.innerText = "Logout";
+        loginBtn.style.backgroundColor = "#e74c3c";
+        loginBtn.onclick = () => {
+            auth.signOut().then(() => {
+                alert("Logged out!");
+                location.reload();
+            });
+        };
+    } else {
+        adminSection.style.display = 'none';
+        loginBtn.innerText = "Admin Login";
+        loginBtn.style.backgroundColor = "#e67e22";
+        loginBtn.onclick = handleAuth;
+    }
+});
+
+// 3. Login Function
 function handleAuth() {
     const email = prompt("Enter Admin Email:");
     const password = prompt("Enter Admin Password:");
+    
     if (email && password) {
         auth.signInWithEmailAndPassword(email, password)
             .then(() => {
                 alert("Login successful!");
-                document.querySelector('.admin-section').style.display = 'block';
-                document.getElementById('loginBtn').innerText = "Logout";
-                document.getElementById('loginBtn').onclick = () => {
-                    auth.signOut().then(() => location.reload());
-                };
             })
             .catch(err => alert("Login Failed: " + err.message));
     }
 }
 
-// 3. Function to save property to Firebase
+// 4. Register New Property
 function uploadAndSave() {
     const title = document.getElementById('homeTitle').value;
     const locationName = document.getElementById('homeLocation').value;
@@ -32,7 +67,7 @@ function uploadAndSave() {
     const imageUrl = document.getElementById('homeImageURL').value;
 
     if (!title || !locationName || !price || !phone) {
-        alert("Please fill in all required fields.");
+        alert("Please fill in all fields.");
         return;
     }
 
@@ -42,96 +77,69 @@ function uploadAndSave() {
         location: locationName,
         price: price,
         phone: phone,
-        image: imageUrl || "https://via.placeholder.com/200", // Default image if empty
+        image: imageUrl || "https://via.placeholder.com/300x200?text=No+Image",
         createdAt: Date.now()
     };
 
     database.ref('listings/' + newPostKey).set(postData)
         .then(() => {
-            alert("Registered successfully!");
-            location.reload();
+            alert("Property registered!");
+            document.querySelectorAll('.admin-section input').forEach(input => input.value = "");
         })
         .catch(err => alert("Error: " + err.message));
 }
 
-// 4. Fetch and display data from Firebase (Real-time)
+// 5. Display Listings (Real-time)
 database.ref('listings').on('value', (snapshot) => {
     const data = snapshot.val();
     const container = document.getElementById('listingsContainer');
     container.innerHTML = "";
     
     if (!data) {
-        container.innerHTML = "<p style='text-align:center; padding:20px; color:#666;'>No listings found. Please add a property.</p>";
+        container.innerHTML = "<p style='text-align:center;'>No listings available.</p>";
         return;
     }
 
     for (let id in data) {
         const item = data[id];
         container.innerHTML += `
-            <div class="card" style="margin:15px; background:white; border-radius:12px; overflow:hidden; box-shadow:0 4px 10px rgba(0,0,0,0.1); border: 1px solid #eee;">
-                <img src="${item.image}" style="width:100%; height:220px; object-fit:cover;" onerror="this.src='https://via.placeholder.com/200'">
-                <div style="padding:15px;">
-                    <h3 style="margin:0 0 8px 0; font-size: 18px; color: #2c3e50;">${item.title}</h3>
-                    <p style="margin:5px 0; color: #7f8c8d;">📍 ${item.location}</p>
-                    <p style="color:#27ae60; font-weight:bold; font-size:20px; margin:12px 0;">${item.price}</p>
-                    <div style="display:flex; gap:10px; margin-top:15px;">
-                        <a href="tel:${item.phone}" style="flex:2; background:#27ae60; color:white; text-align:center; padding:12px; border-radius:8px; text-decoration:none; font-weight:bold; display: flex; align-items: center; justify-content: center; gap: 5px;">
-                           📞 Call Now
-                        </a>
-                        ${auth.currentUser ? `
-                            <button onclick="deleteHome('${id}')" style="flex:1; background:#e74c3c; color:white; border:none; padding:12px; border-radius:8px; cursor:pointer; font-weight:bold;">
-                                🗑️ Delete
-                            </button>` : ''}
+            <div class="card">
+                <img src="${item.image}" onerror="this.src='https://via.placeholder.com/300x200'">
+                <div class="card-info" style="padding:15px;">
+                    <h3>${item.title}</h3>
+                    <p>📍 ${item.location}</p>
+                    <p class="price" style="color:#27ae60; font-weight:bold;">${item.price}</p>
+                    <div style="display:flex; gap:10px; margin-top:10px;">
+                        <a href="tel:${item.phone}" style="flex:2; background:#27ae60; color:white; text-align:center; padding:10px; border-radius:5px; text-decoration:none; font-weight:bold;">📞 Call</a>
+                        ${auth.currentUser ? `<button onclick="deleteHome('${id}')" style="flex:1; background:#e74c3c; color:white; border:none; padding:10px; border-radius:5px; cursor:pointer;">🗑️</button>` : ''}
                     </div>
                 </div>
             </div>`;
     }
 });
 
-// 5. Delete property function
+// 6. Delete Listing
 function deleteHome(id) {
-    if (confirm("Are you sure you want to permanently delete this listing?")) {
+    if (confirm("Delete this listing?")) {
         database.ref('listings/' + id).remove()
-            .then(() => alert("Deleted successfully!"))
-            .catch((error) => alert("Error: " + error.message));
+            .then(() => alert("Deleted!"))
+            .catch(err => alert("Error: " + err.message));
     }
 }
 
-// 6. Search functionality
+// 7. Search
 function searchFunction() {
     const input = document.getElementById('searchInput').value.toLowerCase();
     database.ref('listings').once('value', (snapshot) => {
         const data = snapshot.val();
         const container = document.getElementById('listingsContainer');
-        
         if (!data) return;
-
-        container.innerHTML = ""; // Clear current list
-        let foundCount = 0;
-
+        container.innerHTML = "";
         for (let id in data) {
             const item = data[id];
             if (item.title.toLowerCase().includes(input) || item.location.toLowerCase().includes(input)) {
-                foundCount++;
-                // Re-use the same template for filtered items
-                container.innerHTML += `
-                    <div class="card" style="margin:15px; background:white; border-radius:12px; overflow:hidden; box-shadow:0 4px 10px rgba(0,0,0,0.1);">
-                        <img src="${item.image}" style="width:100%; height:220px; object-fit:cover;">
-                        <div style="padding:15px;">
-                            <h3>${item.title}</h3>
-                            <p>📍 ${item.location}</p>
-                            <p style="color:#27ae60; font-weight:bold;">${item.price}</p>
-                            <div style="display:flex; gap:10px; margin-top:15px;">
-                                <a href="tel:${item.phone}" style="flex:1; background:#27ae60; color:white; text-align:center; padding:12px; border-radius:8px; text-decoration:none; font-weight:bold;">📞 Call Now</a>
-                            </div>
-                        </div>
-                    </div>`;
+                container.innerHTML += `<div class="card"><img src="${item.image}"><div class="card-info"><h3>${item.title}</h3><p>📍 ${item.location}</p><p class="price">${item.price}</p><a href="tel:${item.phone}" style="display:block; background:#27ae60; color:white; text-align:center; padding:10px; border-radius:5px; text-decoration:none;">📞 Call</a></div></div>`;
             }
-        }
-        
-        if (foundCount === 0) {
-            container.innerHTML = `<p style='text-align:center; padding:20px;'>No results found for "${input}".</p>`;
         }
     });
 }
-
